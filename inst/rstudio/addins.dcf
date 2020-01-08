@@ -1,0 +1,4 @@
+Name: Shinydashboard for K-WEATHER
+Description: RStudio addin- Shinydashboard for K-WEATHER
+Binding: kweather
+Interactive: true

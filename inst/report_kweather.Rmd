@@ -1,0 +1,107 @@
+---
+title: "K-WEATHER REPORT"
+author: "차라투 주식회사"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_height: 6
+    fig_width: 10
+    highlight: textmate
+    theme: cosmo
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+params:
+  place: "GP015"
+  dateRange1: "2019-11-01"
+  dateRange2: "2019-11-30"
+  xaxis: "Hour"
+  vars: "PM10"
+  chart: "kkk"
+  chart.perplace: "kkk"
+  tbsummary: "kkk"  
+editor_options: 
+  chunk_output_type: console
+---
+
+<style>
+   p {line-height: 2.5em;}
+   pre, code {white-space:pre !important; overflow-x:scroll !important}
+   body .main-container {
+        max-width: 3600px;
+    }
+</style>
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F,fig.align="center",message=FALSE, warning=FALSE,fig.width = 15,cache=F,dpi=300)
+library(data.table);library(magrittr);library(highcharter);library(lubridate)
+
+
+```
+
+
+* 기간: `r paste(params$dateRange1, params$dateRange2, sep = "~")`
+
+
+* 장소: `r paste(params$place, collapse = ", ")`
+
+
+* X 축: `r params$xaxis` 
+
+
+
+## 지표별 
+
+### Chart
+
+```{r}
+lapply(names(params$chart), function(my_i){
+  params$chart[[my_i]] %>% hc_title(text = my_i) 
+}) %>% 
+  hw_grid(rowheight = 450, ncol = 2)  %>% htmltools::browsable()
+
+
+#params$chart %>% 
+#  hw_grid(rowheight = 450, ncol = 2)  %>% htmltools::browsable()
+
+```
+
+### Summary table
+
+```{r}
+fname <- "summary"
+datatable(params$tbsummary, rownames = T, extensions = "Buttons", caption = "Summary table",
+          options = c(list(dom = '<lf<rt>Bip>', lengthMenu = list(c(10, 25, -1), c('10', '25', 'All')), pageLength = -1,
+                                                     buttons = list('copy', 
+                                                                    'print', 
+                                                                    list(extend = 'collection', 
+                                                                         buttons = list(list(extend = 'csv', filename= fname),
+                                                                                        list(extend = 'excel', filename= fname), 
+                                                                                        list(extend = 'pdf', filename= fname)
+                                                                         ), 
+                                                                         text = 'Download')
+                                                                    )), list(scrollX = TRUE)))
+
+```
+
+
+
+## 가구별
+
+* 지표: `r params$vars`
+
+```{r}
+lapply(names(params$chart.perplace), function(my_i){
+  params$chart.perplace[[my_i]] %>% hc_title(text = my_i) 
+}) %>% 
+  hw_grid(rowheight = 450, ncol = 2)  %>% htmltools::browsable()
+
+#params$chart.perplace %>% 
+#  hw_grid(rowheight = 450, ncol = 2)  %>% htmltools::browsable()
+  
+
+
+```
