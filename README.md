@@ -1,7 +1,7 @@
 # kweatherdashboard
 
-![](https://github.com/zarathucorp/kweatherdashboard/workflows/.github/workflows/Rcheck.yml/badge.svg)
-[![CRAN\_Download\_Badge](https://cranlogs.r-pkg.org/badges/kweatherdashboard)]
+![Github action](https://github.com/zarathucorp/kweatherdashboard/workflows/.github/workflows/Rcheck.yml/badge.svg)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/kweatherdashboard)]
 [![GitHub license](https://img.shields.io/github/license/zarathucorp/kweatherdashboard.svg)](https://github.com/zarathucorp/kweatherdashboard/blob/master/LICENSE)
 
 
