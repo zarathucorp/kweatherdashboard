@@ -48,11 +48,7 @@ jobs:
           sudo -s eval "$sysreqs"
       
       - name: Install dependencies
-        run: | 
-          install.packages("remotes") 
-          remotes::install_deps(dependencies = TRUE)
-          remotes::install_cran("rcmdcheck")
-        shell: Rscript {0}   
+        run: Rscript -e "install.packages('remotes')" -e "remotes::install_deps(dependencies = TRUE)" -e "remotes::install_cran('rcmdcheck')"   
         
       - name: Check
         run: Rscript -e "rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error', check_dir = 'check')"
@@ -69,6 +65,6 @@ jobs:
         run: |
           Rscript -e "remotes::install_github('jimhester/pkgdown@github-actions-deploy')"
           R CMD INSTALL .
-          Rscript -e "pkgdown:::deploy_local(new_process = FALSE, remote_url = 'https://x-access-token:${{secrets.DEPLOY_PAT}}@github.com/${{github.repository}}.git')"
+          Rscript -e "pkgdown:::deploy_local(new_process = T, remote_url = 'https://x-access-token:${{secrets.DEPLOY_PAT}}@github.com/${{github.repository}}.git')"
 
 
