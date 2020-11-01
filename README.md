@@ -7,4 +7,4 @@
 
 Shinydashboard for K-WEATHER
 
-* Click **Shinydashboard for K-WEATHER** addin button
+* Click **Shinydashboard for K-WEATHER** addin button 
