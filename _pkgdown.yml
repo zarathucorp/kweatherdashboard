@@ -3,7 +3,7 @@ URL: https://zarathucorp.github.io/kweatherdashboard/, https://github.com/zarath
 development:
   mode: auto
 
-destination: docs
+#destination: docs
   
 authors:
   Jinseob Kim:
